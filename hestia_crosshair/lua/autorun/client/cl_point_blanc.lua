@@ -2,7 +2,6 @@ file.CreateDir("crossair_hestiarp")
 file.CreateDir("crossair_hestiarp/couleur")
 
 function drawCrosshair()
-        
         CrosshairHestiaRp = CrosshairHestiaRp or {} 
             tempCouleur = {
                 r=file.Read("crossair_hestiarp/couleur/r.txt", "DATA"), 
@@ -29,7 +28,7 @@ function countTable(liste)
     for _ in pairs(liste) do taille = taille + 1 end
     return taille
 end
-------------
+
 
 hook.Add( "HUDPaint", "crosshairHestia", function()
     drawCrosshair()
@@ -42,7 +41,7 @@ hook.Add( "OnContextMenuOpen", "Pannel_crosshairHestiaOpen", function()
         Frame_Crosshair:AlignTop(50)
         Frame_Crosshair:CenterHorizontal()
         Frame_Crosshair:SetBGColor(Color(0,0,0))
-        Frame_Crosshair:SetTitle("Options Pointeur")
+        Frame_Crosshair:SetTitle("#crosshair.nom")
         Frame_Crosshair:SetDraggable(true)
         Frame_Crosshair:ShowCloseButton(false)
         Frame_Crosshair:MakePopup()
@@ -60,7 +59,7 @@ hook.Add( "OnContextMenuOpen", "Pannel_crosshairHestiaOpen", function()
         end
     local CB_Activer = vgui.Create("DCheckBoxLabel", Panel_Crosshair)
         CB_Activer:SetPos( 5, 5 )
-        CB_Activer:SetText("Activer le Pointeur")
+        CB_Activer:SetText("#crosshair.actif")
         CB_Activer:SetChecked(CrosshairHestiaRp.actif)
         function CB_Activer.OnChange()
             file.Write("crossair_hestiarp/actif.txt", tostring(CB_Activer:GetChecked()))
@@ -69,7 +68,7 @@ hook.Add( "OnContextMenuOpen", "Pannel_crosshairHestiaOpen", function()
         ColorM_Crosshair:SetPos( 5, 30 )
         ColorM_Crosshair:SetSize(160, 100)
         ColorM_Crosshair:SetColor(CrosshairHestiaRp.couleur)
-        ColorM_Crosshair:SetLabel("Couleur du Pointeur")
+        ColorM_Crosshair:SetLabel("#crosshair.couleur")
         ColorM_Crosshair.label:SetDark(false)	
         ColorM_Crosshair:SetPalette(false)
         ColorM_Crosshair:SetAlphaBar(false)
@@ -85,7 +84,7 @@ hook.Add( "OnContextMenuOpen", "Pannel_crosshairHestiaOpen", function()
     local Slider_Crosshair = vgui.Create( "DNumSlider", Panel_Crosshair )
         Slider_Crosshair:SetPos( 5, 95 )			
         Slider_Crosshair:SetSize( 200, 100 )			
-        Slider_Crosshair:SetText( "Taille Pointeur" )	
+        Slider_Crosshair:SetText("#crosshair.taille")	
         Slider_Crosshair:SetMinMax( 2, 15 )
         Slider_Crosshair:SetValue(CrosshairHestiaRp.taille)				
         Slider_Crosshair:SetDecimals( 0 )				
